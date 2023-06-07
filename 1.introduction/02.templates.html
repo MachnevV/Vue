@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates</title>
+</head>
+<body>
+    <div class="app"></div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        /*
+            v-model="name":
+                v-bind:value="name"
+                v-on:input="name = $event.target.value"
+
+            v-bind         :disabled = v-bind:disabled
+            v-on           @click = v-on:click
+            v-if
+            v-else
+            v-show
+            ...
+        */
+        let { createApp } = Vue;
+        let rootComponent = {
+            template: `
+                <input type="text" v-bind:value="name" v-on:input="name = $event.target.value">
+                <button v-on:click="name = ''" v-bind:disabled="name.length === 0">X</button>
+                <div v-show="name.length > 0">          
+                    <h2>Hello, {{ name }}</h2>
+                </div>
+                <div v-show="name.length > 0">          
+                    <button v-on:click="name = ''" v-bind:disabled="name.length < 3 || name.length > 15">LogIn</button>
+                    <h2 v-show="name.length < 3">Введите полное имя</h2>
+                    <h2 v-if="name.length > 15">Некорретная длина имени</h2>
+                </div>
+            `,
+            data(){
+                return {
+                    name: ''
+                }
+            }
+        };
+
+        let app = createApp(rootComponent);
+        app.mount('.app');
+
+    </script>    
+</body>
+</html>

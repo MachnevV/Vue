@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data, Computed, Methods</title>
+</head>
+<body>
+    <div class="app"></div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let { createApp } = Vue;
+        /*
+        vue создает объект и копирует все из data, computed, methods в верхний уровень.
+        cmp = {
+            name: '',
+            nameFilled() {
+                return this.name.length > 0;
+            },
+            cleanName() {
+                this.name = "";
+            }
+        } */
+        let rootComponent = {
+            template: `
+                <input type="text" v-model="name">
+                <button @click="cleanName" :disabled="!nameFilled">X</button>
+                <div v-if="nameFilled">          
+                    <h2>Hello, {{ name }}</h2>
+                </div>
+            `,
+            data(){
+                return {
+                    name: ''
+                }
+            },
+            computed: {
+                nameFilled() {
+                    return this.name.length > 0;
+                }
+            },
+            methods: {
+                cleanName() {
+                    this.name = "";
+                }
+            }
+        };
+
+        let app = createApp(rootComponent);
+        app.mount('.app');
+        /*
+        data, computed, methods:
+
+        data - данный для физ описания того что происходят данные незасимы и автономны. могут меняться со временем
+            card: [],
+            money: int,
+            cupon: null
+
+        computed - вспомогательный раздел для расчета производных значений
+            total
+            canOrder
+
+        methods - меняют раздел data
+            add(pr),
+            remove(id),
+            order()
+        */
+
+    </script>    
+</body>
+</html>
