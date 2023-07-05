@@ -11,7 +11,9 @@
         <!-- <h1>{{header; header.toLocaleUpperCase()}}</h1> -->
         <!-- <h1>{{header ? header : 'Welcome'}}</h1> -->
         <h1>{{header || 'Welcome'}}</h1>
-        <!-- <input v-model="header"> -->
+        <ul>
+            <li v-for="item in items" :key="item.id">{{item.label}}</li>
+        </ul>
     </div>
     <div>
         <script src="https://unpkg.com/vue@3"></script>
@@ -20,7 +22,12 @@
         const shoppingList = Vue.createApp({
             data(){
                 return {
-                    header: "Shopping List App"
+                    header: "Shopping List App",
+                    items: [
+                        {id: 1, label: "10 parts hats"},
+                        {id: 2, label: "2 board games"},
+                        {id: 3, label: "20 cups"},
+                    ]
                 }
             }
         })
