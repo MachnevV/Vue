@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping list App</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div id="shopping-list">
-        <h1>{{header}}</h1>
-        <input v-model="header">
+        <!-- <h1>{{header; header.toLocaleUpperCase()}}</h1> -->
+        <!-- <h1>{{header ? header : 'Welcome'}}</h1> -->
+        <h1>{{header || 'Welcome'}}</h1>
+        <!-- <input v-model="header"> -->
     </div>
     <div>
         <script src="https://unpkg.com/vue@3"></script>
@@ -17,7 +20,7 @@
         const shoppingList = Vue.createApp({
             data(){
                 return {
-                    header: "Vue is ready to party"
+                    header: "Shopping List App"
                 }
             }
         })
