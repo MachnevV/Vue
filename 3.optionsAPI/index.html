@@ -33,12 +33,15 @@
                 <input type="checkbox" v-model="newItemHighPriority">
                 High Priority
             </label>
+            
             <button 
-                v-on:click="saveItem" 
+                :disabled="newItem.length < 5"
+                @click="saveItem" 
                 class="btn btn-primary">
                 Save Item
             </button>
         </div>
+        <a v-bind:href="newItem">Dynamic Link</a>
         <p v-if="items.length === 0">Good job! You've bought all your items!</p>
 
         <!-- {{newItem}} {{newItemPriority}} {{newItemHighPriority}}
