@@ -41,7 +41,7 @@
                 Save Item
             </button>
         </div>
-        <a v-bind:href="newItem">Dynamic Link</a>
+        <!-- <a v-bind:href="newItem">Dynamic Link</a> -->
         <p v-if="items.length === 0">Good job! You've bought all your items!</p>
 
         <!-- {{newItem}} {{newItemPriority}} {{newItemHighPriority}}
@@ -49,9 +49,21 @@
         <label><input type="checkbox" v-model="iceCreamFlavors" value="chocolate">Chocolate</label>
         <label><input type="checkbox" v-model="iceCreamFlavors" value="strawbery">Strawbery</label>
         <label><input type="checkbox" v-model="iceCreamFlavors" value="cookies and cream">Cookies and cream</label> -->
-
         <ul>
-            <li v-for="item in items" :key="item.id">{{item.label}}</li>
+            <li v-for="item in items" 
+                @click="togglePurchased(item)"
+                :key="item.id"
+                :class="{strikeout: item.purchased, priority: item.highPriority}"
+                class="statis-class"
+            >{{item.label}}</li>
+
+            <!-- <li v-for="item in items" :key="item.id"
+                :class="[
+                    {strikeout: item.purchased},
+                    {priority: item.highPriority},
+                    'statis-class'
+                ]"
+            >{{item.label}}</li> -->
         </ul>
     </div>
     <div>
@@ -68,20 +80,29 @@
                     iceCreamFlavors: [],
                     editing: false,
                     items: [
-                        // {id: 1, label: "10 parts hats"},
-                        // {id: 2, label: "2 board games"},
-                        // {id: 3, label: "20 cups"},
+                        {id: 1, label: "10 parts hats", purchased: true, highPriority: false},
+                        {id: 2, label: "2 board games", purchased: true, highPriority: false},
+                        {id: 3, label: "20 cups", purchased: false, highPriority: true},
                     ]
                 }
             },
             methods:{
                 saveItem(){
-                    this.items.push({id:this.items.length + 1, label: this.newItem})
+                    this.items.push({
+                        id:this.items.length + 1,
+                        label: this.newItem,
+                        highPriority: this.newItemHighPriority
+                    })
                     this.newItem = ""
+                    this.newItemHighPriority = ""
                 },
                 doEdit(editing){
                     this.editing = editing
                     this.newItem = ""
+                    this.newItemHighPriority = ""
+                },
+                togglePurchased(item){
+                    item.purchased = !item.purchased
                 }
             }
         }).mount('#shopping-list')
