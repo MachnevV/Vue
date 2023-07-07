@@ -20,6 +20,8 @@
             <input 
             @keyup.enter="saveItem" 
             type="text" v-model="newItem" placeholder="Add an Item">
+            <p class="counter">{{characterCount}}/200</p>
+
             <!-- <label><input type="radio" v-model="newItemPriority" value="low">Low</label>
             <label><input type="radio" v-model="newItemPriority" value="high">High</label>
             <label>
@@ -50,7 +52,7 @@
         <label><input type="checkbox" v-model="iceCreamFlavors" value="strawbery">Strawbery</label>
         <label><input type="checkbox" v-model="iceCreamFlavors" value="cookies and cream">Cookies and cream</label> -->
         <ul>
-            <li v-for="item in items" 
+            <li v-for="item in reversedItems" 
                 @click="togglePurchased(item)"
                 :key="item.id"
                 :class="{strikeout: item.purchased, priority: item.highPriority}"
@@ -84,6 +86,14 @@
                         {id: 2, label: "2 board games", purchased: true, highPriority: false},
                         {id: 3, label: "20 cups", purchased: false, highPriority: true},
                     ]
+                }
+            },
+            computed:{
+                characterCount(){
+                    return this.newItem.length
+                },
+                reversedItems(){
+                    return [...this.items].reverse()
                 }
             },
             methods:{
