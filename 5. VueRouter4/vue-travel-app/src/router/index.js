@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Home from '@/views/Home.vue'
 
 const routes = [
@@ -7,9 +7,14 @@ const routes = [
         path: '/vue-travel-app/:id/:slug',
         name:'destination.show',
         component: ()=>import('@/views/DestinationShow.vue'),
-        props: route=> ({id: parseInt(route.params.id)})
+        props: route=> ({...route.params, id: parseInt(route.params.id)})
     },
-
+    {
+        path: '/destination/:id/:slug/:experienceSlug',
+        name: 'experience.show',
+        component: () => import('@/views/ExperienceShow.vue'),
+        props: route=> ({...route.params, id: parseInt(route.params.id)})
+    }
 ]
 
 const router = createRouter({
