@@ -20,7 +20,7 @@ export default {
         },
         experience(){
             return this.destination.experiences.find(
-                experience=> experience.slug === this.experienceSlug
+                experience => experience.slug === this.experienceSlug
             )
         }
     }

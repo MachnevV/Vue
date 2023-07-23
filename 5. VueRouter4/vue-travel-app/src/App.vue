@@ -18,7 +18,7 @@ export default{
 }
 </script>
 <style lang="css">
-  /* first css
+  /* css for slide
   .slide-enter-active,
   .slide-leave-active {
     transition: opacity 1s, transform 1s;
@@ -29,7 +29,7 @@ export default{
     transform: translateX(-30%)
   } */
 
-  /* second css
+  /* css for moveUp
   .moveUp-enter-active {
     animation: fadeIn 1s ease-in;
   }
