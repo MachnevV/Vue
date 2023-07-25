@@ -17,7 +17,9 @@ export default {
     methods:{
         logout(){
             window.user = null
-            this.$router.push({name: 'Home'})
+            // this.$router.push({name: 'Home', hash: "#logout"}) or
+            this.$router.push({name: 'Home', query: {logout: null}})
+            // this.$router.replace({name: 'Home', query: {logout: null}})
         }
     }
 }
