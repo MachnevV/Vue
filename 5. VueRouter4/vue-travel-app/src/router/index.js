@@ -37,6 +37,15 @@ const routes = [
         }
     },
     {
+        // path: "/example/:id",
+        // path: "/example/:id(\\d+)",
+        // path: "/example/:id+",
+        // path: "/example/:id(\\d+)+",
+        // path: "/example/:id(\\d+)*",
+        path: "/example/:id(\\d+)?",
+        component: () => import("@/views/Login.vue")
+    },
+    {
         path: '/vue-travel-app/:id/:slug',
         name:'destination.show',
         component: ()=>import('@/views/DestinationShow.vue'),
