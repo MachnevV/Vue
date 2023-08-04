@@ -1,7 +1,7 @@
 <template>
     <div>
+        <h1>Product List</h1>
         <ul>
-            <h1>Product List</h1>
             <li v-for="product in products">
                 {{product.title}} - {{product.price}}
             </li>
