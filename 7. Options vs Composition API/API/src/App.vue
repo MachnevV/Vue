@@ -1,20 +1,25 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="nav">
+    <router-link to="/">Options API</router-link> | 
+    <router-link to="/composition">Composition API</router-link>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <router-view/>
 </template>
 
-<style scoped>
+
+
+<style>
+#nav {
+  padding: 30px;
+}
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
