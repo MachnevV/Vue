@@ -8,7 +8,6 @@
 import ProductList from './components/ProductList.vue';
 
 export default {
-  // name: 'app',
   components: {
     ProductList
   }

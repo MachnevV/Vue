@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-new Vuex.Store({
+export default new Vuex.Store({
     // state, mutations, getters, actions, modules
 
     state: { // = data
@@ -17,9 +17,13 @@ new Vuex.Store({
     actions: { // = methods
         fetchProducts () {
             // make the call
+            // run setProducts mutations
         }
     },
     mutations: {
-        // update products
+        setProducts (state, products) {
+            // update products
+            state.products = products
+        }
     }
 })
