@@ -4,7 +4,7 @@
         <h3>You have {{ todosCount }} ToDos!</h3>
         <div>
             <input 
-                v-model="newTodoName"
+                v-model="data.newTodoName"
                 @keyup.enter="addTodo"
                 placeholder="Add a ToDo"
                 type="text"
@@ -12,7 +12,7 @@
         </div>
         <div>
             <ul>
-                <li v-for="(todo, index) in todos" :key="todo.id">
+                <li v-for="(todo, index) in data.todos" :key="todo.id">
                     <span>{{ todo.name }}</span>
                     <button @click="deleteTodo(index)">X</button>
                 </li>
@@ -22,59 +22,49 @@
 </template>
   
 <script>
-import { ref, computed, watch } from 'vue';
+import { reactive, computed, watch } from 'vue';
 
 export default {
-    setup() {
-        let newTodoName = ref('')
-        let todos = ref([
-            {
-                id: 1,
-                name: 'One'
-            },
-            {
-                id: 2,
-                name: 'Two'
-            },
-            {
-                id: 3,
-                name: 'Three'
-            }
-        ])
+    setup() {       
+        let data = reactive({
+            newTodoName: '',
+            todos: []
+        })
+
         const swearwords = ['bad', 'very bad']
 
 
         let todosCount = computed(() => {
-            return todos.value.length
+            return data.todos.length
         })
 
 
         function addTodo() {
             let newTodo = {
                 id: Date.now(),
-                name: newTodoName.value
+                name: data.newTodoName
             }
-            todos.value.push(newTodo)
-            newTodoName.value = ''
+            data.todos.push(newTodo)
+            data.newTodoName = ''
         }
 
         function deleteTodo(index) {
-            todos.value.splice(index, 1)
+            data.todos.splice(index, 1)
         }
 
-        watch(newTodoName, (newValue) => {
+        watch(data, (newValue) => {
             // console.log('newValue: ', newValue)
-            if (swearwords.includes(newValue.toLowerCase())) {
-                newTodoName.value = ''
-                alert('Never say ' + newValue + ' !')
+            if (swearwords.includes(newValue.newTodoName.toLowerCase())) {
+                alert('Never say ' + newValue.newTodoName + ' !')
+                data.newTodoName = ''
             }
         })
 
         return {
-            newTodoName,
-            todos,
+            data,
 
             todosCount,
+
 
             addTodo,
             deleteTodo,

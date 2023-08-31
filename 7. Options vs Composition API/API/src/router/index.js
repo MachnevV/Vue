@@ -12,6 +12,11 @@ const routes = [
         name: 'Composition',
         component: () => import('../views/Composition.vue')
     },
+    {
+        path: '/reactiveobj',
+        name: 'ReactiveObj',
+        component: () => import('../views/ReactiveObj.vue')
+    },
 ]
 
 const router = createRouter({

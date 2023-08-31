@@ -1,7 +1,8 @@
 <template>
   <div class="nav">
     <router-link to="/">Options API</router-link> | 
-    <router-link to="/composition">Composition API</router-link>
+    <router-link to="/composition">Composition API</router-link> | 
+    <router-link to="/reactiveobj">Reactive Objects</router-link>
   </div>
   <router-view/>
 </template>
@@ -9,16 +10,16 @@
 
 
 <style>
-#nav {
+.nav {
   padding: 30px;
 }
 
-#nav a {
+.nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+.nav a.router-link-exact-active {
   color: #42b983;
 }
 
